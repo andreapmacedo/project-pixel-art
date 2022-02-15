@@ -20,9 +20,13 @@ function createColorPalette() {
     const colors = colorsPalette[index];
     const colorListItem = document.createElement('div');
   
-    colorListItem.className = "color" + " " + colors; // Atribui a classe color a cada item
-    // colorListItem.innerHTML = colors;
-
+    
+    if(colors === 'black'){
+      colorListItem.className = "color" + " " + colors + " " + "selected"; // Atribui a classe color a cada item
+    }else {
+      colorListItem.className = "color" + " " + colors; // Atribui a classe color a cada item
+    }
+    
     colorsPaletteList.appendChild(colorListItem);
     
   }
@@ -30,8 +34,11 @@ function createColorPalette() {
 
 createColorPalette();
 
-let changeColor = document.querySelector('.black')
-changeColor.style.backgroundColor = 'black'
+
+
+
+// let changeColor = document.querySelector('.black')
+// changeColor.style.backgroundColor = 'black'
 
 function createPixelBoard() {
   
@@ -40,7 +47,7 @@ function createPixelBoard() {
   for (let index = 0; index < 25; index += 1) {
     let pixel = document.createElement('div');
     pixel.className = ('pixel')
-    pixel.style.color = 'white';
+    pixel.style.backgroundColor = 'white';
     pixelBoard.appendChild(pixel);
   
   } 
