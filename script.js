@@ -36,7 +36,7 @@ function createPixelBoard() {
 
 }
 createPixelBoard();
-//---------------------------------------------------------------//----------------------------
+//---------------------------------------------//---------------------------------------------
 
 
 let selectedColor = 'white';
@@ -59,7 +59,7 @@ greenColor.addEventListener('click', handleChangeTech);
 blueColor.addEventListener('click', handleChangeTech);
 
 
-//---------------------------------------------------------------//----------------------------
+//---------------------------------------------//---------------------------------------------
 
 // O Código abaixo foi desenvolvido por João Pster, Pessoa estudante na Trybe - turma 20 - tribo B
 function fillColorPixel(event) {
@@ -69,3 +69,36 @@ function fillColorPixel(event) {
   const e = event.target;
   e.style.backgroundColor = bgColor;
 }
+
+
+//-------------------------------------------------------------------------------------------
+//| Desafio 9
+//-------------------------------------------------------------------------------------------
+
+function createClearButton(buttonName) {
+  let buttonContainer = document.querySelector('.buttons-container');
+  let newButton = document.createElement('button');
+  let newButtonID = 'clear-board';
+
+  newButton.innerHTML = buttonName;
+  newButton.id = newButtonID;
+  newButton.addEventListener('click', clearBoard);
+  buttonContainer.appendChild(newButton);
+};
+
+createClearButton('Limpar');
+
+
+
+function clearBoard() {
+  const pixelsList = document.querySelectorAll('.pixel');
+
+  for (let i = 0; i < pixelsList.length; i += 1) {
+    pixelsList[i].style.backgroundColor = 'rgba(255, 255, 255)';
+  }
+}
+
+
+//-------------------------------------------------------------------------------------------
+//| Desafio 10
+//-------------------------------------------------------------------------------------------

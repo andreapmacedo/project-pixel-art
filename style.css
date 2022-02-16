@@ -16,7 +16,8 @@
 } */
 
 #color-palette {
-  display: inline-block;
+  /* display: inline-block; */
+  display: block;
   /* margin: 0px; */
   /* padding: 0px; */
 
@@ -75,6 +76,13 @@
 }
 
 
+.buttons-container {
+  background-color: #eee;
+  display: inline-block;
+  text-align: center;
+  /* width: 100%; */
+  width: 200px;
+}
 
   /* display: flex;
   flex-flow: row wrap; */
