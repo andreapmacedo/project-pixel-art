@@ -30,18 +30,20 @@
   border: solid 1px black;
   width: 40px;
   height: 40px;
+  background-color: white;
 }
 
 
 .selected {
-  /* border: solid 2px yellow; */
+  
 }
 
+ /* .black {
+  background-color: yellow;
+ } */
 
-
-.black {
+/* .black {
   background-color: black;
-  /* color: black; */
 }
 .red {
   background-color: red;
@@ -51,7 +53,7 @@
 }
 .green {
   background-color: green;
-}
+} */
 
 .pixel {
   display: inline-block;
@@ -59,7 +61,7 @@
   border: solid 1px black;
   height: 40px;
   width: 40px;
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 
 #pixel-board {
