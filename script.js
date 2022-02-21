@@ -1,9 +1,20 @@
 // aula 5.2 1h10min
 
+
+
+
 const colorsPalette = ['black', 'red', 'green', 'blue']
+const colorsPaletteList = document.querySelector('#color-palette');
+const board = document.querySelector('#pixel-board');
+
+const buttonContainer = document.querySelector('.control-container');
+
+
+const inputText = document.getElementById('board-size');
+
+
 
 function createColorPalette() {
-  const colorsPaletteList = document.querySelector('#color-palette');
 
   for (let index = 0; index < colorsPalette.length; index += 1) {
     const colors = colorsPalette[index];
@@ -20,22 +31,50 @@ function createColorPalette() {
 }
 
 createColorPalette();
-
+//---------------------------------------------//---------------------------------------------
 
 // Cria o quadro com os "pixels"
-function createPixelBoard() {
-  const pixelBoard = document.querySelector('#pixel-board');
-
-  for (let index = 0; index < 25; index += 1) {
-    let pixel = document.createElement('div');
-    pixel.className = ('pixel')
-    pixel.addEventListener('click', fillColorPixel);
-    pixel.style.backgroundColor = 'white';
-    pixelBoard.appendChild(pixel);
+function createPixelBoard(lines = 5) {
+  for (let i = 0; i < lines; i += 1) {
+    let line = document.createElement('section');
+    board.appendChild(line);
+    for (let j = 0; j < lines; j++) {
+      let pixel = document.createElement('div');
+      pixel.className = ('pixel')
+      pixel.addEventListener('click', fillColorPixel);
+      pixel.style.backgroundColor = 'white';
+      line.appendChild(pixel);
+      console.log(j)
+    }
   }
-
 }
+
+
+//   for (let i = 0; i < i; i += 1) {
+//       for (let j = 0; j < lines; j++){
+//         let pixel = document.createElement('div');
+//         pixel.className = ('pixel')
+//         pixel.addEventListener('click', fillColorPixel);
+//         pixel.style.backgroundColor = 'white';
+//         board.appendChild(pixel);
+//       }
+//   }
+
+
+
+//old
+// function createPixelBoard() {
+//   for (let index = 0; index < 25; index += 1) {
+//     let pixel = document.createElement('div');
+//     pixel.className = ('pixel')
+//     pixel.addEventListener('click', fillColorPixel);
+//     pixel.style.backgroundColor = 'white';
+//     board.appendChild(pixel);
+//   }
+
+// }
 createPixelBoard();
+
 //---------------------------------------------//---------------------------------------------
 
 
@@ -75,8 +114,35 @@ function fillColorPixel(event) {
 //| Desafio 9
 //-------------------------------------------------------------------------------------------
 
+function clearBoard() {
+  const pixelsList = document.querySelectorAll('.pixel');
+  for (let i = 0; i < pixelsList.length; i += 1) {
+    pixelsList[i].style.backgroundColor = 'rgba(255, 255, 255)';
+  }
+}
+
+function validateBoard() {
+  iValue = parseInt(inputText.value);
+  if (iValue !== NaN) {
+    if (iValue >= 5 && iValue <= 50) {
+      return true;
+    }
+  }
+  alert('Board inválido!');
+  return false;
+}
+
+function generateBoard() {
+  if (validateBoard()) {
+    while (board.firstChild) {
+      board.removeChild(board.firstChild);
+    }
+    createPixelBoard(inputText.value)
+  }
+}
+
 function createClearButton(buttonName) {
-  let buttonContainer = document.querySelector('.buttons-container');
+  let buttonContainer = document.querySelector('.control-container');
   let newButton = document.createElement('button');
   let newButtonID = 'clear-board';
 
@@ -86,18 +152,34 @@ function createClearButton(buttonName) {
   buttonContainer.appendChild(newButton);
 };
 
-createClearButton('Limpar');
+function createGeneratBoardButton(buttonName) {
+  let buttonContainer = document.querySelector('.control-container');
+  let newButton = document.createElement('button');
+  let newButtonID = 'generate-board';
+
+  newButton.innerHTML = buttonName;
+  newButton.id = newButtonID;
+  newButton.addEventListener('click', generateBoard);
+  buttonContainer.appendChild(newButton);
+};
+  createGeneratBoardButton('VQV');
+  createClearButton('Limpar');
 
 
-
-function clearBoard() {
-  const pixelsList = document.querySelectorAll('.pixel');
-
-  for (let i = 0; i < pixelsList.length; i += 1) {
-    pixelsList[i].style.backgroundColor = 'rgba(255, 255, 255)';
-  }
+// Criação de botões genéricos
+function createGenericButton(parent, id, text) {
+  const newButton = document.createElement('button');
+  newButton.innerText = text;
+  newButton.id = id;
+  parent.appendChild(newButton);
 }
 
+// const btnTest = createGenericButton(buttonContainer, 'test-is', 'test')
+
+
+window.onload = function () {
+  // btnTest.addEventListener('click', clearBoard);
+}
 
 //-------------------------------------------------------------------------------------------
 //| Desafio 10

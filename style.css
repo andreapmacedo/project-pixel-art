@@ -20,10 +20,12 @@
   display: block;
   /* margin: 0px; */
   /* padding: 0px; */
-
-
 }
 
+section{
+  margin: 0;
+  padding: 0;
+}
 
 .color {
   box-sizing: border-box;
@@ -39,23 +41,6 @@
   
 }
 
- /* .black {
-  background-color: yellow;
- } */
-
-/* .black {
-  background-color: black;
-}
-.red {
-  background-color: red;
-}
-.blue {
-  background-color: blue;
-}
-.green {
-  background-color: green;
-} */
-
 .pixel {
   display: inline-block;
   box-sizing: border-box;
@@ -69,16 +54,20 @@
   /* display: inline-block; */
 
   box-sizing: border-box;
-  padding: 0px;
-  margin: 0px; 
-  width: 220px;
-  height: 220px;
+  padding: 0;
+  margin: 0; 
+  /* width: 220px; */
+  /* height: 220px; */
 }
 
+input{
+  width: 40px;
+}
 
-.buttons-container {
+.control-container {
   background-color: #eee;
-  display: inline-block;
+  /* display: inline-block; */
+  display: inline;
   text-align: center;
   /* width: 100%; */
   width: 200px;
