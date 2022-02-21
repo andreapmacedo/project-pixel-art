@@ -4,25 +4,24 @@ const board = document.querySelector('#pixel-board');
 const buttonContainer = document.querySelector('.control-container');
 const inputText = document.getElementById('board-size');
 
-
-
-// Cria a palheta de cores.
+//-- Cria a palheta de cores.
 function createColorPalette() {
   for (let index = 0; index < colorsPalette.length; index += 1) {
     const colors = colorsPalette[index];
     const colorListItem = document.createElement('div');
     if (colors === 'black') {
       colorListItem.className = "color" + " " + colors + " " + "selected"; // Atribui a classe color e selected ao primeiro item
+      colorListItem.style.backgroundColor = colors
     } else {
       colorListItem.className = "color" + " " + colors; // Atribui a classe color a cada item
+      colorListItem.style.backgroundColor = 'rgb' + generateRGB();
     }
-    colorListItem.style.backgroundColor = colors
     colorsPaletteList.appendChild(colorListItem);
   }
 }
 createColorPalette();
 
-
+//-- Cria o quadro com os pixels.
 function createPixelBoard(lines) {
   for (let i = 0; i < lines; i += 1) {
     let line = document.createElement('div');
@@ -128,6 +127,13 @@ function createGenericButton(parent, id, text) {
   newButton.innerText = text;
   newButton.id = id;
   parent.appendChild(newButton);
+}
+
+function generateRGB() {
+  const red = Math.floor(Math.random() * 256)
+  const green = Math.floor(Math.random() * 256)
+  const blue = Math.floor(Math.random() * 256) 
+  return '(' + red + ', ' + green + ', ' + blue + ')';
 }
 
 // const btnTest = createGenericButton(buttonContainer, 'test-is', 'test')
