@@ -1,25 +1,16 @@
-// aula 5.2 1h10min
-
-
-
-
 const colorsPalette = ['black', 'red', 'green', 'blue']
 const colorsPaletteList = document.querySelector('#color-palette');
 const board = document.querySelector('#pixel-board');
-
 const buttonContainer = document.querySelector('.control-container');
-
-
 const inputText = document.getElementById('board-size');
 
 
 
+// Cria a palheta de cores.
 function createColorPalette() {
-
   for (let index = 0; index < colorsPalette.length; index += 1) {
     const colors = colorsPalette[index];
     const colorListItem = document.createElement('div');
-
     if (colors === 'black') {
       colorListItem.className = "color" + " " + colors + " " + "selected"; // Atribui a classe color e selected ao primeiro item
     } else {
@@ -29,14 +20,13 @@ function createColorPalette() {
     colorsPaletteList.appendChild(colorListItem);
   }
 }
-
 createColorPalette();
-//---------------------------------------------//---------------------------------------------
 
-// Cria o quadro com os "pixels"
-function createPixelBoard(lines = 5) {
+
+function createPixelBoard(lines) {
   for (let i = 0; i < lines; i += 1) {
-    let line = document.createElement('section');
+    let line = document.createElement('div');
+    line.style.width = '2500px'
     board.appendChild(line);
     for (let j = 0; j < lines; j++) {
       let pixel = document.createElement('div');
@@ -44,39 +34,10 @@ function createPixelBoard(lines = 5) {
       pixel.addEventListener('click', fillColorPixel);
       pixel.style.backgroundColor = 'white';
       line.appendChild(pixel);
-      console.log(j)
     }
   }
 }
-
-
-//   for (let i = 0; i < i; i += 1) {
-//       for (let j = 0; j < lines; j++){
-//         let pixel = document.createElement('div');
-//         pixel.className = ('pixel')
-//         pixel.addEventListener('click', fillColorPixel);
-//         pixel.style.backgroundColor = 'white';
-//         board.appendChild(pixel);
-//       }
-//   }
-
-
-
-//old
-// function createPixelBoard() {
-//   for (let index = 0; index < 25; index += 1) {
-//     let pixel = document.createElement('div');
-//     pixel.className = ('pixel')
-//     pixel.addEventListener('click', fillColorPixel);
-//     pixel.style.backgroundColor = 'white';
-//     board.appendChild(pixel);
-//   }
-
-// }
-createPixelBoard();
-
-//---------------------------------------------//---------------------------------------------
-
+createPixelBoard(5);
 
 let selectedColor = 'white';
 const blackColor = document.querySelector('.black');
@@ -97,9 +58,6 @@ redColor.addEventListener('click', handleChangeTech);
 greenColor.addEventListener('click', handleChangeTech);
 blueColor.addEventListener('click', handleChangeTech);
 
-
-//---------------------------------------------//---------------------------------------------
-
 // O Código abaixo foi desenvolvido por João Pster, Pessoa estudante na Trybe - turma 20 - tribo B
 function fillColorPixel(event) {
   const selectedColor = document.querySelector('.selected');
@@ -108,12 +66,7 @@ function fillColorPixel(event) {
   const e = event.target;
   e.style.backgroundColor = bgColor;
 }
-
-
 //-------------------------------------------------------------------------------------------
-//| Desafio 9
-//-------------------------------------------------------------------------------------------
-
 function clearBoard() {
   const pixelsList = document.querySelectorAll('.pixel');
   for (let i = 0; i < pixelsList.length; i += 1) {
@@ -121,12 +74,16 @@ function clearBoard() {
   }
 }
 
+let iValue = 5;
 function validateBoard() {
   iValue = parseInt(inputText.value);
-  if (iValue !== NaN) {
-    if (iValue >= 5 && iValue <= 50) {
-      return true;
-    }
+  if(iValue > 0 ){
+    if (iValue < 5) {
+      iValue = 5;
+    } else if (iValue > 50) {
+      iValue = 50;
+    }    
+    return true;
   }
   alert('Board inválido!');
   return false;
@@ -137,7 +94,7 @@ function generateBoard() {
     while (board.firstChild) {
       board.removeChild(board.firstChild);
     }
-    createPixelBoard(inputText.value)
+    createPixelBoard(iValue)
   }
 }
 
@@ -162,9 +119,8 @@ function createGeneratBoardButton(buttonName) {
   newButton.addEventListener('click', generateBoard);
   buttonContainer.appendChild(newButton);
 };
-  createGeneratBoardButton('VQV');
-  createClearButton('Limpar');
-
+createGeneratBoardButton('VQV');
+createClearButton('Limpar');
 
 // Criação de botões genéricos
 function createGenericButton(parent, id, text) {
@@ -176,8 +132,8 @@ function createGenericButton(parent, id, text) {
 
 // const btnTest = createGenericButton(buttonContainer, 'test-is', 'test')
 
-
 window.onload = function () {
+  // createColorPalette();
   // btnTest.addEventListener('click', clearBoard);
 }
 
